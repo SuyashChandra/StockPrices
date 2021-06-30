@@ -28,7 +28,7 @@ if(records){
         ))
     }
     return(
-      <div style={{"width": "213px", "height": "180px", "position": "relative",  }}>
+      <div style={{"width": "188px", "height": "187px", "position": "relative",  }}>
 
         <Content records={arr}  eventInfo={eventInfo} key={Math.random()} />
         </div>

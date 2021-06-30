@@ -1,19 +1,33 @@
 .App {
   display: flex;
-  flex-direction: "row";
+  flex-direction: row;
+  overflow: hidden;
 }
 .calendar{
-  width:80%
+  width:70%
 }
 
 .right-panel{
   box-sizing: border-box;
-  width:20%;
+  width:30%;
   display: flex;
   flex-direction: column;
 }
-.right-panel section {
-  border: 1px black solid;
+.max-profit{
+  border-bottom: 1px black solid
+}
+.chart{
+  border-bottom: 1px black solid;
+
+}
+
+.buy-sell{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10rem 0
+}
+.buy-sell section{
   width: 100%;
-  height: 33%
+  text-align: center;
 }

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../actions/postActions'
 import axios from 'axios';
 import  RecordContext from "./RecordContext"
-import UpdateContext from './UpdateContext'
+import UpdateContext from './UpdateContext';
+import "./Calendar.css"
 
 export default function Calendar()  {
      
@@ -49,7 +50,7 @@ const [update, setUpdate]=useContext(UpdateContext)
         plugins={[ dayGridPlugin ]}
         // initialView="dayGridMonth"
         dayCellContent={RenderEventContent}
-
+        className="full-calendar"
       />
 
       </>
