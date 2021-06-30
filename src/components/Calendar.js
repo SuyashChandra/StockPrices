@@ -1,30 +1,65 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import Content from "./Content"
+import ParentContent from "./ParentContent"
+import { fetchRecords } from './Airtable/apiRequest'
+import PriceContext from "../App"
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts } from '../actions/postActions'
+import axios from 'axios';
+import  RecordContext from "./RecordContext"
+import UpdateContext from './UpdateContext'
 
-export default class Calendar extends React.Component {
-  render() {
+export default function Calendar()  {
+     
+    // const dispatch=useDispatch()
+    // useEffect(() => {
+    //     dispatch(fetchPosts())
+    // })
+    // // let records = useContext(PriceContext);
+
+    // const p =useSelector((state)=> console.log(state.postReducer.items))
+    // console.log(p)
+
+//     const URL = `https://api.airtable.com/v0/appfuXSS9or8DhGkN/Price%20Table?api_key=${process.env.REACT_APP_API_KEY}`
+
+//     let [prices, setPrices] = useState()
+//   useEffect(() => {
+    
+
+//       axios.get(URL)
+//       .then(function(response){
+//           // console.log(response)
+//           setPrices(response)
+//       })
+//       .catch(function(error){
+//           console.log(error)
+//       })
+    
+   
+//   },[])
+
+const [update, setUpdate]=useContext(UpdateContext)
+
+
+
     return (
+        <>
       <FullCalendar
         plugins={[ dayGridPlugin ]}
         // initialView="dayGridMonth"
         dayCellContent={RenderEventContent}
+
       />
+
+      </>
     )
   }
-}
-function RenderEventContent(eventInfo) {
-   
-    let date = eventInfo.date.getUTCDate()
-    return (
-      <div>
-        <button>X</button>
-        <section style={{"display": "flex", "position": "absolute", "right": "7rem", "justifyContent": "center", "alignContent": "center", "flexDirection": "column"}}>
 
-      <header style={{"fontSize": "2rem", "textAlign": "center", "minWidth": "43px"}}>{date}</header>
-        </section>
-        <Content />
-      </div>
+function RenderEventContent(eventInfo) {
+    // console.log(eventInfo)
+    return (
+        // <h6>h1</h6>
+        <ParentContent  eventInfo={eventInfo} />
     )
   }
