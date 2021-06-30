@@ -8,7 +8,7 @@ import { fetchPosts } from './actions/postActions';
 import axios from 'axios';
 import RecordContext from "./components/RecordContext"
 import UpdateContext from "./components/UpdateContext"
-
+import Chart from "./components/Chart"
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
       axios.get(URL)
       .then(function(response){
-          console.log(response)
+          // console.log(response)
           setPrices( response)
           // console.log(prices)
       })
@@ -35,13 +35,19 @@ function App() {
 
   return (
     <RecordContext.Provider value={prices}>
-  <UpdateContext.Provider value={[update, setUpdate]}>
-    
-    <div className="App">
-      <Calendar />
-      {/* <Content /> */}
-    </div>
-  </UpdateContext.Provider>
+      <UpdateContext.Provider value={[update, setUpdate]}>
+        <section className="App">
+
+          <section className="calendar">
+            <Calendar  />
+          </section>
+        <section className="right-panel">
+          <section></section>
+          <section>< Chart/></section>
+          <section></section>
+        </section>
+        </section>
+      </UpdateContext.Provider>
     </RecordContext.Provider>
     
   );

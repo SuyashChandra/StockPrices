@@ -23,10 +23,10 @@ const Content = ({eventInfo, records}) =>{
     let [price, setPrice] = React.useState(() => {
         if(records){
             records.map(record => {
-                console.log("Before :",record.Date,formatDate)
+                // console.log("Before :",record.Date,formatDate)
                 if(formatDate === record.Date ){
                     // console.log(record.Price)
-                    console.log("After",formatDate, record.Date, record)
+                    // console.log("After",formatDate, record.Date, record)
                     a= record.Price
                     
                     // setUpdate(true)
@@ -40,10 +40,10 @@ const Content = ({eventInfo, records}) =>{
     let [uniqueId, setUniqueId] = useState(() => {
         if(records){
             records.map(record => {
-                console.log("Before :",record.Date,formatDate)
+                // console.log("Before :",record.Date,formatDate)
                 if(formatDate === record.Date ){
                     // console.log(record.Price)
-                    console.log("After",formatDate, record.Date, record)
+                    // console.log("After",formatDate, record.Date, record)
                     b= record.id
                     
                     // setUpdate(true)
@@ -53,13 +53,33 @@ const Content = ({eventInfo, records}) =>{
         }
         return undefined
     })
+
+    // const as=useSelector(state=> console.log(state))
+   
+const [update, setUpdate]=useContext(UpdateContext)
+
+
     const getPrice = async (e)=> {
         let formatDate=`${eventInfo.date.getFullYear()}-${month}-${date}T18:30:00.000Z`
         let newPrice=prompt("Enter the stock price")
         if(newPrice!==null){
 
+            // addPrice( formatDate,parseInt(newPrice, 10))
+            base('Price Table').create([
+                {
+                  "fields": {
+                    "Date": formatDate,
+                    "Price": parseInt(newPrice, 10)
+                  }
+                }], function(err, records) {
+                    if (err) {
+                      console.error(err);
+                      return;
+                    }
+                setUpdate(state => !state )
+                });
             setPrice(parseInt(newPrice, 10))
-            addPrice( formatDate,parseInt(newPrice, 10))
+                
         }
         
         console.log(eventInfo)
@@ -69,7 +89,6 @@ const Content = ({eventInfo, records}) =>{
    
     let [modal, setModal] = React.useState(false)
     
-    // const [update, setUpdate]=useContext(UpdateContext)
 
     // console.log(update)
 
@@ -79,19 +98,24 @@ const Content = ({eventInfo, records}) =>{
         if(price!==null){
             setPrice(null)
         }
+        if(uniqueId)
+        setPrice(undefined)
         if(uniqueId ){
             base('Price Table').destroy([uniqueId], function(err, deletedRecords) {
-            if (err) {
-            console.error(err);
-            return;
-            }
-            console.log('Deleted', deletedRecords.length, 'records');
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                setUpdate(state => !state )
+                console.log('Deleted', deletedRecords.length, 'records');
             });
         }
+       
+
     }
     // console.log(process.env.REACT_APP_ID)
 
-    let displayPrice = price ? <p style={{"width": "max-content", "alignSelf": "center", "fontSize":"3rem", "margin": 0, "position" :"relative", bottom:"1rem"}}>&#8377;{price}</p> : <button onClick ={getPrice} style={{"width": "max-content", "alignSelf": "center", "fontSize":"1.6rem"}} >Add Stock Price</button>
+    let displayPrice = price ? <p style={{"width": "max-content", "alignSelf": "center", "fontSize":"3rem", "margin": 0, "position" :"relative", bottom:"1rem"}}>&#8377;{price}</p> : <button onClick ={getPrice} style={{"width": "max-content", "alignSelf": "center", "fontSize":"1rem"}} >Add Stock Price</button>
 
     
 
@@ -108,10 +132,10 @@ const Content = ({eventInfo, records}) =>{
     // }
     return(
         <div style={{"display": "flex", "flexDirection":"column"}} key={Math.random()}>
-    <button onClick={onClickHandler} style={{"width": "max-content", "alignSelf": "end", "fontSize": "1.5rem"}}  >X</button>
+    <button onClick={onClickHandler} style={{"width": "max-content", "alignSelf": "end", "fontSize": "1.2rem"}}  >X</button>
         <section  style={{"display": "flex","flexDirection":"column"}}>
 
-      <header style={{"alignSelf": "center", "fontSize": "4rem", "paddingBottom": "2rem"}} >{eventDate}</header>
+      <header style={{"alignSelf": "center", "fontSize": "3rem", "paddingBottom": "2rem"}} >{eventDate}</header>
                     
                 {displayPrice}
                
