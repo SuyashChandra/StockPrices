@@ -48,6 +48,7 @@ const Content = ({ eventInfo, records }) => {
     let formatDate = `${eventInfo.date.getFullYear()}-${month}-${date}T18:30:00.000Z`;
     let newPrice = prompt("Enter the stock price");
     if (newPrice !== null) {
+      setUpdate(true);
       base("Price Table").create(
         [
           {
@@ -62,7 +63,7 @@ const Content = ({ eventInfo, records }) => {
             console.error(err);
             return;
           }
-          setUpdate((state) => !state);
+          setUpdate(false);
         }
       );
       setPrice(parseInt(newPrice, 10));
@@ -78,12 +79,13 @@ const Content = ({ eventInfo, records }) => {
     }
     if (uniqueId) setPrice(undefined);
     if (uniqueId) {
+      setUpdate(true);
       base("Price Table").destroy([uniqueId], function (err, deletedRecords) {
         if (err) {
           console.error(err);
           return;
         }
-        setUpdate((state) => !state);
+        setUpdate(false);
         console.log("Deleted", deletedRecords.length, "records");
       });
     }

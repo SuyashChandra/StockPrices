@@ -10,7 +10,6 @@ export default function Calendar() {
       <FullCalendar
         plugins={[dayGridPlugin]}
         dayCellContent={RenderEventContent}
-        className="full-calendar"
       />
     </>
   );

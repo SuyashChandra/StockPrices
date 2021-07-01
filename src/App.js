@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <RecordContext.Provider value={prices}>
+    <RecordContext.Provider value={[prices, setPrices]}>
       <UpdateContext.Provider value={[update, setUpdate]}>
         <section className="App">
           <section className="calendar">
@@ -49,7 +49,7 @@ function App() {
                 Max Profit
               </h1>
               <p style={{ fontSize: "2rem", textAlign: "center" }}>
-                &#8377;{profit}
+                &#8377;{profit * 10}
               </p>
             </section>
             <section className="chart">

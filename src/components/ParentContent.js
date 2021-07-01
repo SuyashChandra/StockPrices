@@ -3,7 +3,7 @@ import Content from "./Content";
 import RecordContext from "./RecordContext";
 
 const ParentContent = ({ eventInfo }) => {
-  const records = useContext(RecordContext);
+  const [records] = useContext(RecordContext);
 
   let arr = [];
   if (records) {

@@ -2,32 +2,32 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  max-height: 945px;
 }
-.calendar{
-  width:70%
+.calendar {
+  width: 70%;
 }
 
-.right-panel{
+.right-panel {
   box-sizing: border-box;
-  width:30%;
+  width: 30%;
   display: flex;
   flex-direction: column;
 }
-.max-profit{
-  border-bottom: 1px black solid
-}
-.chart{
+.max-profit {
   border-bottom: 1px black solid;
-
+}
+.chart {
+  border-bottom: 1px black solid;
 }
 
-.buy-sell{
+.buy-sell {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 10rem 0
+  padding: 10rem 0;
 }
-.buy-sell section{
+.buy-sell section {
   width: 100%;
   text-align: center;
 }
