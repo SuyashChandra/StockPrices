@@ -82,6 +82,7 @@ const Chart = ({ Profit, MinIndex, MaxIndex }) => {
       },
       chart: {
         type: "spline",
+        height: "302.5",
       },
       title: {
         text: "Stock Price Trend",

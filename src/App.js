@@ -39,16 +39,30 @@ function App() {
   return (
     <RecordContext.Provider value={[prices, setPrices]}>
       <UpdateContext.Provider value={[update, setUpdate]}>
-        <section className="App">
+        <section
+          className="App"
+          style={{ fontFamily: "Open Sans", padding: "10px" }}
+        >
           <section className="calendar">
             <Calendar />
           </section>
           <section className="right-panel">
             <section className="max-profit">
-              <h1 style={{ fontSize: "3rem", textAlign: "center" }}>
+              <h1
+                style={{
+                  fontSize: "2rem",
+                  textAlign: "center",
+                }}
+              >
                 Max Profit
               </h1>
-              <p style={{ fontSize: "2rem", textAlign: "center" }}>
+              <p
+                style={{
+                  fontSize: "3rem",
+                  textAlign: "center",
+                  color: "#118C4F",
+                }}
+              >
                 &#8377;{profit * 10}
               </p>
             </section>

@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .App {
   display: flex;
   flex-direction: row;
@@ -15,13 +18,22 @@
   flex-direction: column;
 }
 .max-profit {
+  box-sizing: border-box;
+
   border-bottom: 1px black solid;
 }
 .chart {
+  box-sizing: border-box;
+
   border-bottom: 1px black solid;
+}
+.right-panel section {
+  height: 33%;
 }
 
 .buy-sell {
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -30,4 +42,17 @@
 .buy-sell section {
   width: 100%;
   text-align: center;
+}
+
+.buy-sell section h2 {
+  position: relative;
+  bottom: 5rem;
+  font-size: 2.5rem;
+}
+
+.buy-sell section h3 {
+  position: relative;
+  bottom: 4rem;
+  font-size: 1.5rem;
+  text-decoration: underline;
 }

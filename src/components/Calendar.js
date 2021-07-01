@@ -10,6 +10,7 @@ export default function Calendar() {
       <FullCalendar
         plugins={[dayGridPlugin]}
         dayCellContent={RenderEventContent}
+        titleFormat={{ year: "numeric", month: "long", day: "2-digit" }}
       />
     </>
   );

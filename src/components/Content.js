@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import UpdateContext from "./UpdateContext";
 import Airtable from "airtable";
+import "./Content.css";
 
 const Content = ({ eventInfo, records }) => {
   var base = new Airtable({ apiKey: `${process.env.REACT_APP_API_KEY}` }).base(
@@ -100,17 +101,28 @@ const Content = ({ eventInfo, records }) => {
         margin: 0,
         position: "relative",
         bottom: "1rem",
+        color: "#118C4F",
       }}
     >
       &#8377;{price}
     </p>
   ) : (
     <button
+      className="addPrice"
       onClick={getPrice}
-      style={{ width: "max-content", alignSelf: "center", fontSize: "1rem" }}
+      style={{ alignSelf: "center" }}
     >
       Add Stock Price
     </button>
+  );
+
+  const closeButton = (
+    <button
+      type="submit"
+      className="remove"
+      onClick={onClickHandler}
+      style={{ width: "max-content", alignSelf: "end", fontSize: "1.2rem" }}
+    />
   );
 
   return (
@@ -118,17 +130,12 @@ const Content = ({ eventInfo, records }) => {
       style={{ display: "flex", flexDirection: "column" }}
       key={Math.random()}
     >
-      <button
-        onClick={onClickHandler}
-        style={{ width: "max-content", alignSelf: "end", fontSize: "1.2rem" }}
-      >
-        X
-      </button>
+      {price ? closeButton : null}
       <section style={{ display: "flex", flexDirection: "column" }}>
         <header
           style={{
             alignSelf: "center",
-            fontSize: "3rem",
+            fontSize: "2.5rem",
             paddingBottom: "2rem",
           }}
         >
