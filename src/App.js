@@ -22,7 +22,7 @@ function App() {
   }, [URL]);
 
   let [update, setUpdate] = useState(false);
-  let [profit, setProfit] = useState();
+  let [profit, setProfit] = useState(0);
   const setMaxProfit = (maxProfit) => {
     setProfit(maxProfit);
   };
