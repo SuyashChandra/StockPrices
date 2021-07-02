@@ -12,6 +12,7 @@ export default function Calendar() {
         dayCellContent={RenderEventContent}
         titleFormat={{ year: "numeric", month: "long", day: "2-digit" }}
         handleWindowResize={false}
+        // dayCellClassNames={"remove"}
       />
     </>
   );

@@ -17,6 +17,64 @@
 .addPrice:hover {
   background-color: white; /* Green */
   color: black;
+  cursor: pointer;
+  /* border: 2px solid #4caf50; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+input {
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+input:focus {
+  border-color: #333;
+}
+
+.form-submit-button {
+  max-width: 4rem;
+  background-color: #9ad7ef; /* Green */
+  border: none;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  transition-duration: 0.4s;
+  border: 1px solid #9ad7ef;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.form-submit-button:hover {
+  background-color: white; /* Green */
+  color: black;
+  cursor: pointer;
+  /* border: 2px solid #4caf50; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modalClose {
+  background-color: #ef9a9a; /* Green */
+  border: none;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  transition-duration: 0.4s;
+  border: 1px solid #ef9a9a;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.modalClose:hover {
+  background-color: white; /* Green */
+  color: black;
+  cursor: pointer;
   /* border: 2px solid #4caf50; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }

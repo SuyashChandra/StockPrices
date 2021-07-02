@@ -12,7 +12,7 @@ const ParentContent = ({ eventInfo }) => {
     );
   }
   return (
-    <div style={{ width: "188px", height: "187px", position: "relative" }}>
+    <div style={{ width: "188px", height: "187px" }}>
       <Content records={arr} eventInfo={eventInfo} key={Math.random()} />
     </div>
   );

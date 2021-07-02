@@ -2,13 +2,32 @@ import React, { useContext, useState } from "react";
 import UpdateContext from "./UpdateContext";
 import Airtable from "airtable";
 import "./Content.css";
+import ReactModal from "react-modal";
 
 const Content = ({ eventInfo, records }) => {
   var base = new Airtable({ apiKey: `${process.env.REACT_APP_API_KEY}` }).base(
     "appfuXSS9or8DhGkN"
   );
+
+  const [modal, setModal] = useState(false);
+  const [newPrice, setNewPrice] = useState("");
+
   let month = eventInfo.date.getMonth();
   let date = eventInfo.date.getDate();
+  //   let stockCompleteDate = `${eventInfo.date.getFullYear()}-${month}-${date}`;
+  // let stockDate= formatDate(stockCompleteDate, {
+  //     month: 'long',
+  //     year: 'numeric',
+  //     day: 'numeric',
+  //     timeZoneName: 'short',
+  //     timeZone: 'UTC',
+  //     locale: 'es'
+  //   })
+
+  const stockMonth = eventInfo.date.toLocaleString("default", {
+    month: "long",
+  });
+
   if (month < 10) {
     month = `0${eventInfo.date.getMonth() + 1}`;
   }
@@ -47,7 +66,6 @@ const Content = ({ eventInfo, records }) => {
 
   const getPrice = async (e) => {
     let formatDate = `${eventInfo.date.getFullYear()}-${month}-${date}T18:30:00.000Z`;
-    let newPrice = prompt("Enter the stock price");
     if (newPrice !== null) {
       setUpdate(true);
       base("Price Table").create(
@@ -109,7 +127,8 @@ const Content = ({ eventInfo, records }) => {
   ) : (
     <button
       className="addPrice"
-      onClick={getPrice}
+      //   onClick={getPrice}
+      onClick={() => setModal(true)}
       style={{ alignSelf: "center" }}
     >
       Add Stock Price
@@ -126,25 +145,89 @@ const Content = ({ eventInfo, records }) => {
   );
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      key={Math.random()}
-    >
-      {price ? closeButton : null}
-      <section style={{ display: "flex", flexDirection: "column" }}>
-        <header
-          style={{
-            alignSelf: "center",
-            fontSize: "2.5rem",
-            paddingBottom: "2rem",
-          }}
+    <>
+      <div
+        style={{ display: "flex", flexDirection: "column", zIndex: 1 }}
+        key={Math.random()}
+      >
+        {price ? closeButton : null}
+        <section
+          style={{ display: "flex", flexDirection: "column", zIndex: 1 }}
         >
-          {eventDate}
-        </header>
+          <header
+            style={{
+              alignSelf: "center",
+              fontSize: "2.5rem",
+              paddingBottom: "2rem",
+              zIndex: 1,
+            }}
+          >
+            {eventDate}
+          </header>
 
-        {displayPrice}
-      </section>
-    </div>
+          {displayPrice}
+        </section>
+      </div>
+      <ReactModal
+        isOpen={modal}
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+            zIndex: 1,
+          },
+          content: {
+            position: "absolute",
+            maxHeight: "15rem",
+            fontFamily: "Open Sans",
+            width: "22rem",
+            top: "30%",
+            left: "40%",
+            right: "40px",
+            bottom: "40px",
+            border: "1px solid #ccc",
+            background: "#fff",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "20px",
+          },
+        }}
+      >
+        <h3>
+          Enter the Stock Price for {date} {stockMonth}
+        </h3>
+        <form
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={getPrice}
+        >
+          <button
+            className="modalClose"
+            style={{ position: "absolute", top: "4px", right: "3px" }}
+            onClick={(e) => {
+              e.preventDefault();
+              setModal(false);
+            }}
+          >
+            Close
+          </button>
+          <input
+            type="number"
+            placeholder="Enter the Stock price"
+            value={newPrice}
+            onChange={(e) => setNewPrice(e.target.value)}
+            style={{ maxWidth: "15rem", marginBottom: "1rem" }}
+          />
+          <button type="submit" className="form-submit-button">
+            Submit
+          </button>
+        </form>
+      </ReactModal>
+    </>
   );
 };
 
