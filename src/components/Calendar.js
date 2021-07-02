@@ -11,6 +11,7 @@ export default function Calendar() {
         plugins={[dayGridPlugin]}
         dayCellContent={RenderEventContent}
         titleFormat={{ year: "numeric", month: "long", day: "2-digit" }}
+        handleWindowResize={false}
       />
     </>
   );

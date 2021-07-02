@@ -38,6 +38,7 @@
   flex-direction: row;
   justify-content: center;
   padding: 10rem 0;
+  min-width: fit-content;
 }
 .buy-sell section {
   width: 100%;
